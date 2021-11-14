@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main</title>
+</head>
+<body>
+    <!-- 로그인 버튼 -->
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}">로그아웃</a>
+    {% else %}
+    <a href="{% url 'login' %}">로그인</a>
+    {% endif %}
+
+    <!-- 홈으로 -->
+    <a href="{% url 'main' %}">Matchable</a>
+    
+    <!-- 메뉴바(크리에이티브) -->
+    <span style="font-weight: bold;">크리에이티브</span>
+    <a href="">디지털 드로잉</a>
+    <a href="">영상 편집</a>
+    <a href="">공예</a>
+    <a href="">요리/음료</a>
+    <a href="">베이킹/디저트</a>
+    <a href="">음악</a>
+    <a href="">댄스</a>
+    <a href="">운동</a>
+    <a href="">사진/영상</a>
+    <a href="">글</a>
+    
+    <!-- 메뉴바(컴퓨터)) -->
+    <span style="font-weight: bold;">컴퓨터</span>
+    <a href="">모션 그래픽</a>
+    <a href="">인테리어</a>
+    <a href="">제품 디자인</a>
+    <a href="">IT</a>
+    <a href="">오피스</a>
+    <a href="">웹 디자인/웹 퍼블리셔</a>
+    <a href="">영상 편집</a>
+    <a href="">메타버스</a>
+
+    <!-- 메뉴바(언어) -->
+    <span style="font-weight: bold;">언어</span>
+    <a href="">영어</a>
+    <a href="">중국어</a>
+    <a href="">일본어</a>
+    <a href="">스페인어</a>
+    <a href="">불어</a>
+    <a href="">독일어</a>
+
+    <!-- 학원 리스트 -->
+    {% for institute in institutes %}
+    <div style="border: 3px solid black;">
+        학원 이름 : {{institute.name}}<br>
+        학원 위치 : {{institute.location}}<br>
+        학원 카테고리 : {{institute.get_category_display}}<br>
+        학원 설명 : {{institute.description}}<br>
+        {% if institute.image %}
+        학원 사진 : <img src="{{institute.image.url}}" width="200"></img>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+</body>
+</html>
